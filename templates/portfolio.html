@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio Optimization</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portfolio Optimization</h1>
+    <form action="/result" method="post">
+        <label for="symbol_count">銘柄数:</label>
+        <input type="number" id="symbol_count" name="symbol_count" required><br>
+        
+        <div id="symbol_inputs"></div>
+        
+        <input type="submit" value="Optimize">
+    </form>
+
+    <script>
+        var symbolCountInput = document.getElementById("symbol_count");
+        var symbolInputsContainer = document.getElementById("symbol_inputs");
+
+        symbolCountInput.addEventListener("input", function() {
+            var symbolCount = parseInt(symbolCountInput.value);
+            symbolInputsContainer.innerHTML = "";
+
+            for (var i = 1; i <= symbolCount; i++) {
+                var label = document.createElement("label");
+                label.textContent = "銘柄" + i + ":";
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "symbol" + i;
+                label.appendChild(input);
+                symbolInputsContainer.appendChild(label);
+            }
+        });
+    </script>
+</body>
+</html>
+
